@@ -4,13 +4,16 @@ import WeekController from './controllers/weekController.js'
 import { type Express, type Request, type Response } from 'express'
 import type Notion from './data/notion'
 import PreviousController from './controllers/previousController.js'
+import { Storage } from '@google-cloud/storage'
 
 class Application {
   express: Express
   notion: Notion
+  storage: Storage
 
   constructor (notion: Notion) {
     this.express = setupExpress()
+    this.storage = new Storage()
     this.notion = notion
     this.registerRoutes()
   }
